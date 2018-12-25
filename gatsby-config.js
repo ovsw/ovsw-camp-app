@@ -32,7 +32,7 @@ module.exports = {
       options: {
         accessToken: 'YalttTZLJGB6ZgCrYUzYEQtt',
         homeSlug: 'home',
-        version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
+        version: process.env.NODE_ENV === 'production' ? 'published' : 'draft'
       }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
