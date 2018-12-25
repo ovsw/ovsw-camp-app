@@ -1,7 +1,8 @@
-import Page from './page'
-import Grid from './grid'
-import Teaser from './teaser'
-import Feature from './feature'
+import Page from './content-types/page'
+
+import Grid from './nestable/grid'
+import Teaser from './nestable/teaser'
+import Feature from './nestable/feature'
 
 export default {
   page: Page,

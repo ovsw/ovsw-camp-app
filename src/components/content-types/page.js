@@ -1,5 +1,5 @@
 import React from 'react'
-import Components from './components.js';
+import Components from '../components.js';
 
 const Page = (props) => (
   <div>
