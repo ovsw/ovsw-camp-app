@@ -1,17 +1,19 @@
 import React from 'react'
-import { Link } from "gatsby"
+import { Link } from 'gatsby'
 // import Components from '../../components.js';
 
-const Navitem = (props) => (
+const Navitem = ({ title, url, childItems }) => (
   <li>
-    <Link to={props.url} activeClassName="active">{props.title}</Link>
-    {props.children && 
+    <Link to={url} activeClassName="active">
+      {title}
+    </Link>
+    {childItems && (
       <ul>
-        {props.children.map((item)  => {
-          return <Navitem key={item._uid} url={item.link.cached_url} title={item.title} children={item.sub_items}/>
-        })}
+        {childItems.map(item => (
+          <Navitem key={item._uid} url={item.link.cached_url} title={item.title} childItems={item.sub_items} />
+        ))}
       </ul>
-    }
+    )}
   </li>
 )
 

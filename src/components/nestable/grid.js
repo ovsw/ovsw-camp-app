@@ -1,17 +1,20 @@
 import React from 'react'
-import Components from '../components.js';
 import SbEditable from 'storyblok-react'
+import Components from '../components.js'
 
-const Grid = (props) => (
-  <SbEditable content={props.blok}>
-    <div className="container">
-      <div className="row">
-        {props.blok.columns.map((blok) =>
-          React.createElement(Components[blok.component], {key: blok._uid, blok: blok})
-        )}
+const Grid = props => {
+  const { blok } = props
+  return (
+    <SbEditable content={blok}>
+      <div className="container">
+        <div className="row">
+          {blok.columns.map(column =>
+            React.createElement(Components[column.component], { key: column._uid, blok: column })
+          )}
+        </div>
       </div>
-    </div>
-  </SbEditable>
-)
+    </SbEditable>
+  )
+}
 
 export default Grid

@@ -1,10 +1,14 @@
 import React from 'react'
-import Components from '../components.js';
+import Components from '../components.js'
 
-const Page = (props) => (
-  <div>
-    {props.blok.body && props.blok.body.map((blok) => React.createElement(Components[blok.component], {key: blok._uid, blok: blok}))}
-  </div>
-)
+const Page = props => {
+  const { blok } = props
+  return (
+    <div>
+      {blok.body &&
+        blok.body.map(block => React.createElement(Components[block.component], { key: block._uid, blok: block }))}
+    </div>
+  )
+}
 
 export default Page

@@ -8,5 +8,5 @@ export default {
   page: Page,
   grid: Grid,
   teaser: Teaser,
-  feature: Feature
+  feature: Feature,
 }

@@ -3,7 +3,6 @@ import Components from '../components/components.js'
 import Navitem from '../components/nestable/elements/navitem'
 
 class StoryblokEntry extends React.Component {
-
   // check if the props sent to this component changed
   // if they didn't do nothing. If they did, process the new props via prepareStory(props)
   static getDerivedStateFromProps(props, state) {
@@ -14,7 +13,6 @@ class StoryblokEntry extends React.Component {
     return StoryblokEntry.prepareStory(props)
   }
 
-
   // prep the initial or new props by extracting the parts we need from the query result
   // and processing the content into JSON so we can use it in the component
   static prepareStory(props) {
@@ -24,9 +22,9 @@ class StoryblokEntry extends React.Component {
     const globalSettings = Object.assign({}, props.pageContext.globalSettings)
     globalSettings.content = JSON.parse(globalSettings.content)
 
-    console.log(globalSettings.content.main_nav)
+    const globalSettingsContent = globalSettings.content
 
-    return { story, globalSettings }
+    return { story, globalSettingsContent }
   }
 
   constructor(props) {
@@ -37,17 +35,19 @@ class StoryblokEntry extends React.Component {
   }
 
   render() {
-    let content = this.state.story.content
-    let globalSettings = this.state.globalSettings.content
+    const {
+      story: { content },
+      globalSettingsContent,
+    } = this.state
 
     return (
       <div>
         <ul>
-          {globalSettings.main_nav.map( (item) => {
-            return <Navitem key={item._uid} url={item.link.cached_url} title={item.title} children={item.sub_items}/>
-          })}
+          {globalSettingsContent.main_nav.map(item => (
+            <Navitem key={item._uid} url={item.link.cached_url} title={item.title} childItems={item.sub_items} />
+          ))}
         </ul>
-        {React.createElement(Components[content.component], {key: content._uid, blok: content})}
+        {React.createElement(Components[content.component], { key: content._uid, blok: content })}
       </div>
     )
   }

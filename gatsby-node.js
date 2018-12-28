@@ -4,7 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-
 // code for the dynamic generation of pages.
 // The call to createPage will create a page for each content item we
 // have created in Storyblok when executing gatsby build
@@ -18,31 +17,29 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const storyblokEntry = path.resolve('src/templates/storyblok-entry.js')
 
-    // load a configurable site navigation from a global "settings" content item in Storyblok 
+    // load a configurable site navigation from a global "settings" content item in Storyblok
     graphql(
-      `{
-        allStoryblokEntry(
-          filter: {
-            slug: { eq: "settings" }
-          }
-        ) {
-          edges {
-            node {
-              id
-              name
-              created_at
-              published_at
-              uuid
-              slug
-              full_slug
-              content
-              is_startpage
-              parent_id
-              group_id
+      `
+        {
+          allStoryblokEntry(filter: { slug: { eq: "settings" } }) {
+            edges {
+              node {
+                id
+                name
+                created_at
+                published_at
+                uuid
+                slug
+                full_slug
+                content
+                is_startpage
+                parent_id
+                group_id
+              }
             }
           }
         }
-      }`
+      `
     ).then(result => {
       if (result.errors) {
         console.log(result.errors)
@@ -52,43 +49,44 @@ exports.createPages = ({ graphql, actions }) => {
       const globalSettings = result.data.allStoryblokEntry.edges[0].node
       resolve(
         graphql(
-          `{
-            allStoryblokEntry {
-              edges {
-                node {
-                  id
-                  name
-                  created_at
-                  published_at
-                  uuid
-                  slug
-                  full_slug
-                  content
-                  is_startpage
-                  parent_id
-                  group_id
+          `
+            {
+              allStoryblokEntry {
+                edges {
+                  node {
+                    id
+                    name
+                    created_at
+                    published_at
+                    uuid
+                    slug
+                    full_slug
+                    content
+                    is_startpage
+                    parent_id
+                    group_id
+                  }
                 }
               }
             }
-          }`
-        ).then(result => {
-          if (result.errors) {
-            console.log(result.errors)
-            reject(result.errors)
+          `
+        ).then(res => {
+          if (res.errors) {
+            console.log(res.errors)
+            reject(res.errors)
           }
 
-          const entries = result.data.allStoryblokEntry.edges
-          entries.forEach((entry, index) => {
-            
-            let pagePath = entry.node.full_slug == 'home' ? '' : `${entry.node.full_slug}/`
-            
+          const entries = res.data.allStoryblokEntry.edges
+          entries.forEach(entry => {
+            const pagePath = entry.node.full_slug == 'home' ? '' : `${entry.node.full_slug}/`
+
             createPage({
               path: `/${pagePath}`,
               component: storyblokEntry,
               context: {
-                globalSettings: globalSettings,
-                story: entry.node
-              }
+                globalSettings,
+                story: entry.node,
+              },
             })
           })
         })
@@ -98,11 +96,11 @@ exports.createPages = ({ graphql, actions }) => {
 }
 
 exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
-	setBabelPlugin({
-		name: 'babel-plugin-tailwind-components',
-		options: {
-			config: './tailwind.config.js',
-			format: 'auto'
-		}
-	})
+  setBabelPlugin({
+    name: 'babel-plugin-tailwind-components',
+    options: {
+      config: './tailwind.config.js',
+      format: 'auto',
+    },
+  })
 }
