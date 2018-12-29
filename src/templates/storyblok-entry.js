@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../components/seo'
 import Components from '../components/components.js'
 import Navitem from '../components/nestable/elements/navitem'
 
@@ -46,6 +47,7 @@ class StoryblokEntry extends React.Component {
 
     return (
       <div>
+        <SEO title={content.seo.title} description={content.seo.description} keywords={content.seo.keywords} />
         <ul>
           {globalSettingsContent.main_nav.map(item => (
             <Navitem key={item._uid} url={item.link.cached_url} title={item.title} childItems={item.sub_items} />
