@@ -16,8 +16,12 @@ class StoryblokEntry extends React.Component {
   // prep the initial or new props by extracting the parts we need from the query result
   // and processing the content into JSON so we can use it in the component
   static prepareStory(props) {
-    const story = Object.assign({}, props.pageContext.story)
-    story.content = JSON.parse(story.content)
+    const story = props.pageContext.story
+    // const story = Object.assign({}, props.pageContext.story)
+    // story.content = JSON.parse(story.content)
+
+    // console.log('story from template:')
+    // console.log(typeof story)
 
     const globalSettings = Object.assign({}, props.pageContext.globalSettings)
     globalSettings.content = JSON.parse(globalSettings.content)

@@ -41,12 +41,19 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `
     ).then(result => {
+      // process the result of the settings query
       if (result.errors) {
         console.log(result.errors)
         reject(result.errors)
       }
-
+      // store the result of the settings query to add to the context later
       const globalSettings = result.data.allStoryblokEntry.edges[0].node
+
+      // then do another query, this time for all the pages.
+      // problem: the content node property below is just a big string blob that needs to be processed into JSON
+      // to create the blok prop that we use to load the pages's page component and pass it its props.
+      // currently that's done in the "storyblok-entry.js" template.
+
       resolve(
         graphql(
           `
@@ -70,22 +77,28 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           `
-        ).then(res => {
-          if (res.errors) {
-            console.log(res.errors)
-            reject(res.errors)
+        ).then(allSbStoriesResponse => {
+          if (allSbStoriesResponse.errors) {
+            console.log(allSbStoriesResponse.errors)
+            reject(allSbStoriesResponse.errors)
           }
 
-          const entries = res.data.allStoryblokEntry.edges
-          entries.forEach(entry => {
-            const pagePath = entry.node.full_slug == 'home' ? '' : `${entry.node.full_slug}/`
+          // process the responseponse with all the pages from storyblok
+          const sbEntries = allSbStoriesResponse.data.allStoryblokEntry.edges
+
+          // go throuch all the edges of the query response
+          sbEntries.forEach(entry => {
+            const pagePath = entry.node.full_slug === 'home' ? '' : `${entry.node.full_slug}/`
+
+            const story = Object.assign({}, entry.node)
+            story.content = JSON.parse(story.content)
 
             createPage({
               path: `/${pagePath}`,
               component: storyblokEntry,
               context: {
                 globalSettings,
-                story: entry.node,
+                story,
               },
             })
           })
@@ -94,6 +107,12 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 }
+
+// exports.onCreateNode = ({ node }) => {
+//   if (node.internal.type === `StoryblokEntry`) {
+//     // console.log(node.internal.type)
+//   }
+// }
 
 exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
   setBabelPlugin({
