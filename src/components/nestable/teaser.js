@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import SbEditable from 'storyblok-react'
-
+import LazyLoad from 'react-lazyload'
 import { jsx, css } from '@emotion/core'
 
 import styled from '@emotion/styled'
@@ -34,6 +34,9 @@ const Teaser = ({ blok }) => (
           </Testlink>
         </p>
       </div>
+      <LazyLoad height={500}>
+        <img src={blok.image} alt="test" />
+      </LazyLoad>
     </div>
   </SbEditable>
 )
