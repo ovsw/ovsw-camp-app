@@ -23,7 +23,7 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
-      }
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -33,10 +33,13 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: `#ff0000`,
         theme_color: `#663399`,
-        display: `minimal-ui`,
+        // display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        gcm_sender_id: '482941778795',
+        gcm_sender_id_comment: 'Do not change the GCM Sender ID',
       },
     },
     {
@@ -44,8 +47,8 @@ module.exports = {
       options: {
         accessToken: 'YalttTZLJGB6ZgCrYUzYEQtt',
         homeSlug: 'home',
-        version: process.env.NODE_ENV === 'production' ? 'published' : 'draft'
-      }
+        version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
+      },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
