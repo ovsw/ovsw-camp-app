@@ -47,9 +47,15 @@ class StoryblokEntry extends React.Component {
       globalSettingsContent,
     } = this.state
 
+    if (!content.seo) {
+      this.seoTitle = 'missing SEO Title'
+      this.seoDescription = 'missing SEO description'
+      this.seoKeywords = 'missing SEO keywords'
+    }
+
     return (
       <Layout>
-        <SEO title={content.seo.title} description={content.seo.description} keywords={content.seo.keywords} />
+        <SEO title={this.seoTitle} description={this.seoDescription} keywords={this.seoKeywords} />
         <ul>
           {globalSettingsContent.main_nav.map(item => (
             <Navitem key={item._uid} url={item.link.cached_url} title={item.title} childItems={item.sub_items} />
