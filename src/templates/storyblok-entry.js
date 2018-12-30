@@ -1,6 +1,7 @@
 import React from 'react'
 import SEO from '../components/seo'
 import Components from '../components/components.js'
+import Layout from '../components/layout'
 import Navitem from '../components/nestable/elements/navitem'
 
 class StoryblokEntry extends React.Component {
@@ -46,7 +47,7 @@ class StoryblokEntry extends React.Component {
     } = this.state
 
     return (
-      <div>
+      <Layout>
         <SEO title={content.seo.title} description={content.seo.description} keywords={content.seo.keywords} />
         <ul>
           {globalSettingsContent.main_nav.map(item => (
@@ -54,7 +55,7 @@ class StoryblokEntry extends React.Component {
           ))}
         </ul>
         {React.createElement(Components[content.component], { key: content._uid, blok: content })}
-      </div>
+      </Layout>
     )
   }
 }
