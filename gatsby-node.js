@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
         graphql(
           `
             {
-              allStoryblokEntry {
+              allStoryblokEntry(filter: { slug: { ne: "settings" } }) {
                 edges {
                   node {
                     id
