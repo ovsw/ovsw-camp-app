@@ -7,6 +7,7 @@ import LazyLoad from 'react-lazyload'
 import { jsx, css } from '@emotion/core'
 
 import styled from '@emotion/styled'
+import sbimage from '../../utils/sbimage'
 
 import styles from '../../styles/styles.js'
 
@@ -35,7 +36,7 @@ const Teaser = ({ blok }) => (
         </p>
       </div>
       <LazyLoad height={500}>
-        <img src={blok.image} alt="test" />
+        <img src={sbimage(blok.image, '1260x500')} alt="test" />
       </LazyLoad>
     </div>
   </SbEditable>
