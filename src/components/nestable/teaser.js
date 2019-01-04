@@ -4,13 +4,18 @@ import React from 'react'
 import Link from 'gatsby-link'
 import SbEditable from 'storyblok-react'
 import LazyLoad from 'react-lazyload'
+
+// emotion css method
 import { jsx, css } from '@emotion/core'
 
+// emotion styled components method
 import styled from '@emotion/styled'
-import sbimage from '../../utils/sbimage'
-
 import styles from '../../styles/styles.js'
 
+import { rhythm } from '../../utils/typography'
+import sbimage from '../../utils/sbimage'
+
+// emotion styled components method
 const Heading = styled('h1')`
   ${tw`my-0 text-xl leading-tight text-pink`};
 `
@@ -29,8 +34,15 @@ const Teaser = ({ blok }) => (
         <button css={styles.button} type="button">
           Test Button
         </button>
-        <p className="lead">
-          <Testlink css="{styles.button}" to="about/">
+        <p
+          className="lead"
+          style={{
+            margin: `0 auto`,
+            backgroundColor: `tomato`,
+            marginTop: rhythm(20.5),
+          }}
+        >
+          <Testlink css={styles.button} to="about/">
             Blog Posts
           </Testlink>
         </p>
