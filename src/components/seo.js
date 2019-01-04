@@ -97,6 +97,8 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   keywords: '',
+  title: 'Missing Page Title',
+  description: 'Missing Page Description',
 }
 
 SEO.propTypes = {
@@ -104,7 +106,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default SEO
