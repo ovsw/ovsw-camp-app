@@ -1,0 +1,30 @@
+.navbar {
+  @apply bg-green-darker;
+  @apply fixed pin-x pin-t w-full;
+}
+.navigation {
+  @apply items-center flex flex-auto px-8 h-full;
+}
+
+.navigation {
+  color: #000;
+}
+
+.logo a{
+  @apply no-underline text-white text-2xl;
+}
+
+.navigationItems ul{
+  @apply flex m-0 list-reset;
+}
+.navigationItems li{
+  @apply m-0 px-2;
+}
+
+.navigationItems a{
+  @apply no-underline text-white ;
+}
+
+.navigationItems a:hover, .navigationItems a:active{
+  @apply  text-orange;
+}

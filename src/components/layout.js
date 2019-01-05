@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { rhythm } from 'src/utils/typography'
 
 import Header from './Header/Header'
-import './layout.css'
+import '../css/style.css'
 
 const Layout = ({ children }) => (
   <>

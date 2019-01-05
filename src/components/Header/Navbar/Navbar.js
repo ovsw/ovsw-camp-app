@@ -2,7 +2,8 @@ import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import { rhythm } from 'src/utils/typography'
 
-import styles from './NavbarStyles'
+// import styles from './NavbarStyles'
+import styles from './Navbar.module.css'
 
 const navbar = props => (
   <StaticQuery
@@ -17,21 +18,20 @@ const navbar = props => (
     `}
     render={data => (
       <header
-        css={styles.navbar}
         style={{
           height: rhythm(4),
           paddingTop: rhythm(1),
           paddingBottom: rhythm(1),
         }}
+        className={styles.navbar}
       >
-        <nav css={styles.navigation}>
-          <div>hambuger</div>
-          <div css={styles.logoWrapper}>
-            <Link to="/" css={styles.logo}>
-              {data.site.siteMetadata.title}
-            </Link>
+        <nav className={styles.navigation}>
+          <div> 1</div>
+          <div className={styles.logo}>
+            <Link to="/">{data.site.siteMetadata.title}</Link>
           </div>
-          <div css={styles.navigationItems}>
+          <div className="flex-1" />
+          <div className={styles.navigationItems}>
             <ul>
               <li>
                 <a href="/">Products</a>

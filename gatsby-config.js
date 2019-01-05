@@ -6,12 +6,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-root-import`,
-    {
-      resolve: `gatsby-plugin-emotion`,
-      options: {
-        // Accepts all options defined by `babel-plugin-emotion` plugin.
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -49,6 +43,14 @@ module.exports = {
         accessToken: 'YalttTZLJGB6ZgCrYUzYEQtt',
         homeSlug: 'home',
         version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
+      },
+    },
+    `gatsby-plugin-postcss`,
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        tailwind: true,
+        purgeOnly: ['src/css/style.css'], // Purge only tailwind
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

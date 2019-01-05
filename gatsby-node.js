@@ -113,13 +113,3 @@ exports.createPages = ({ graphql, actions }) => {
 //     // console.log(node.internal.type)
 //   }
 // }
-
-exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
-  setBabelPlugin({
-    name: 'babel-plugin-tailwind-components',
-    options: {
-      config: './tailwind.config.js',
-      format: 'auto',
-    },
-  })
-}
