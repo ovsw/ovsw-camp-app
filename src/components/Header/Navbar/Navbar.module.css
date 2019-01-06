@@ -11,7 +11,7 @@
 }
 
 .logo a{
-  @apply no-underline text-white text-2xl;
+  @apply no-underline pl-5 text-white text-2xl;
 }
 
 .navigationItems ul{

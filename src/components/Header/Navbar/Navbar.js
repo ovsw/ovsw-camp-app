@@ -1,5 +1,8 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
+
+import HamburgerButton from 'src/components/SideDrawer/HamburgerButton/HamburgerButton'
+
 import { rhythm } from 'src/utils/typography'
 
 // import styles from './NavbarStyles'
@@ -26,7 +29,7 @@ const navbar = props => (
         className={styles.navbar}
       >
         <nav className={styles.navigation}>
-          <div> 1</div>
+          <HamburgerButton />
           <div className={styles.logo}>
             <Link to="/">{data.site.siteMetadata.title}</Link>
           </div>

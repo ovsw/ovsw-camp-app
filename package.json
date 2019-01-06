@@ -25,6 +25,7 @@
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-lazyload": "^2.3.0",
+    "react-motion": "^0.5.2",
     "react-typography": "^0.16.18",
     "storyblok-react": "0.0.6",
     "typography": "^0.16.18",
