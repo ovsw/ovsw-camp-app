@@ -1,7 +1,3 @@
-.navbar {
-  @apply bg-green-darker;
-  @apply fixed pin-x pin-t w-full;
-}
 .navigation {
   @apply items-center flex flex-auto px-8 h-full;
 }

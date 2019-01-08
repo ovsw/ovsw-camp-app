@@ -66,3 +66,9 @@
   /* .btn {
     @apply font-bold py-2 px-4 rounded;
   } */
+
+
+/*  this for having an 100% height drawer (or other elements) without using 100vh - all parents of the element you want to make 100% height also need to have 100% height so here we're setting that */
+  html, body, #___gatsby, #___gatsby > * {
+    height: 100%;
+  }

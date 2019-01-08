@@ -2,7 +2,6 @@ import React from 'react'
 import SEO from '../components/seo'
 import Components from '../components/components.js'
 import Layout from '../components/layout'
-import Navitem from '../components/nestable/elements/navitem'
 
 class StoryblokEntry extends React.Component {
   // check if the props sent to this component changed
@@ -47,6 +46,8 @@ class StoryblokEntry extends React.Component {
       globalSettingsContent,
     } = this.state
 
+    console.log('from template:', globalSettingsContent)
+
     if (!content.seo) {
       this.seoTitle = 'missing SEO Title'
       this.seoDescription = 'missing SEO description'
@@ -54,13 +55,8 @@ class StoryblokEntry extends React.Component {
     }
 
     return (
-      <Layout>
+      <Layout className="h-full" globalSettings={globalSettingsContent}>
         <SEO title={this.seoTitle} description={this.seoDescription} keywords={this.seoKeywords} />
-        <ul>
-          {globalSettingsContent.main_nav.map(item => (
-            <Navitem key={item._uid} url={item.link.cached_url} title={item.title} childItems={item.sub_items} />
-          ))}
-        </ul>
         {React.createElement(Components[content.component], { key: content._uid, blok: content })}
       </Layout>
     )

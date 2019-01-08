@@ -1,11 +1,9 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
+import { MobileNavToggleContext } from 'src/components/layout'
 
-import HamburgerButton from 'src/components/SideDrawer/HamburgerButton/HamburgerButton'
+import BarButton from 'src/components/SideDrawer/BarButton/BarButton'
 
-import { rhythm } from 'src/utils/typography'
-
-// import styles from './NavbarStyles'
 import styles from './Navbar.module.css'
 
 const navbar = props => (
@@ -20,16 +18,13 @@ const navbar = props => (
       }
     `}
     render={data => (
-      <header
-        style={{
-          height: rhythm(4),
-          paddingTop: rhythm(1),
-          paddingBottom: rhythm(1),
-        }}
-        className={styles.navbar}
-      >
+      <>
         <nav className={styles.navigation}>
-          <HamburgerButton />
+          <MobileNavToggleContext.Consumer>
+            {({ mobileNavVisible, toggleMobileNav }) => (
+              <BarButton mobileNavVisible={mobileNavVisible} onClick={toggleMobileNav} />
+            )}
+          </MobileNavToggleContext.Consumer>
           <div className={styles.logo}>
             <Link to="/">{data.site.siteMetadata.title}</Link>
           </div>
@@ -45,7 +40,7 @@ const navbar = props => (
             </ul>
           </div>
         </nav>
-      </header>
+      </>
     )}
   />
 )

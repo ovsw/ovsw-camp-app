@@ -1,0 +1,3 @@
+.sideDrawer {
+  @apply bg-yellow-lightest fixed h-full overflow-auto pin-y pin-r p-3 shadow-md w-full shadow-lg z-30;
+}
